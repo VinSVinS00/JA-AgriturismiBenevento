@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class ElencoAgriturismo
 {
@@ -9,6 +10,10 @@ public class ElencoAgriturismo
 
     public ElencoAgriturismo(){
         agriturismi = new ArrayList<>();
+    }
+
+    public Stream<Agriturismo> stream(){
+        return agriturismi.stream();
     }
 
     public void aggiungi(Agriturismo a){

@@ -116,6 +116,6 @@ public class Agriturismo {
     @Override
     public String toString() {
         return comuneAzienda + ";" + titolare + ";" + denominazioneAzienda + ";" + indirizzoAzienda + ";" + postiLetto + ";" +
-                postiMacchina + ";" + postiTenda + ";" + postiRoulotte + ";" + recapiti + "\n";
+                postiMacchina + ";" + postiTenda + ";" + postiRoulotte + ";" + recapiti + "; " + pernottamento + ";" + camping + "\n";
     }
 }
