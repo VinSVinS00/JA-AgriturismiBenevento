@@ -18,17 +18,12 @@ public class Main {
         s2.forEach(a -> a.setCamping(true));
         System.out.println(e1);
 
-        try{
-            List<String> nomiComuni = e1.stream().map(a -> a.getComuneAzienda()).distinct().collect(Collectors.toList());
-            BufferedWriter bw = new BufferedWriter(new FileWriter("Nomi_Comuni.csv"));
-            for (String stringa : nomiComuni) {
-                bw.write(stringa);
-                bw.newLine();
-            }
-        }catch(IOException ex){
+        List<String> nomiComuni = e1.stream().map(a -> a.getComuneAzienda()).distinct().collect(Collectors.toList());
+        System.out.println(nomiComuni);
+        BufferedWriter writer = new BufferedWriter(new FileWriter("Lista_Comuni.csv"));
+        for(String comune : nomiComuni){
+            writer.write(comune + "\n");
         }
-
-
-
+        writer.close();
     }
 }
