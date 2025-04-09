@@ -1,9 +1,6 @@
 import java.io.*;
 import java.nio.file.attribute.AclEntryFlag;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,6 +23,9 @@ public class Main {
         }
         writer.close();
 
+        Stream<Agriturismo> nomeAzienda =e1.stream().distinct().sorted(Comparator.comparing(Agriturismo::getDenominazioneAzienda));
+        nomeAzienda.forEach(System.out::println);
+
         Map<String,Integer> postiLettoComune = new HashMap<>();
         for(String comune : nomiComuni){
             Stream<Agriturismo> sa = e1.stream().filter(a -> a.getComuneAzienda().equals(comune));
@@ -34,11 +34,11 @@ public class Main {
         }
         System.out.println("\n" + postiLettoComune);
 
-        Map<String,Integer> postiCampingMedi = new HashMap<>();
+       /* Map<String,Integer> postiCampingMedi = new HashMap<>();
         for(String comune : nomiComuni){
             Stream<Agriturismo> sa = e1.stream().filter(a -> a.getComuneAzienda().equals(comune));
             double media =
         }
-
+       */
     }
 }
