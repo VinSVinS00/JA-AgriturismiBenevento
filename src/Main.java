@@ -23,8 +23,10 @@ public class Main {
         }
         writer.close();
 
-        Stream<Agriturismo> nomeAzienda =e1.stream().distinct().sorted(Comparator.comparing(Agriturismo::getDenominazioneAzienda));
+        Stream<Agriturismo> nomeAzienda =e1.stream().sorted(Comparator.comparing(Agriturismo::getDenominazioneAzienda));
         nomeAzienda.forEach(System.out::println);
+
+        
 
         Map<String,Integer> postiLettoComune = new HashMap<>();
         for(String comune : nomiComuni){
