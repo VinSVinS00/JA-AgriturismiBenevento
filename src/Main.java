@@ -26,7 +26,8 @@ public class Main {
         Stream<Agriturismo> nomeAzienda =e1.stream().sorted(Comparator.comparing(Agriturismo::getDenominazioneAzienda));
         nomeAzienda.forEach(System.out::println);
 
-        
+        Optional<Agriturismo> azienda = e1.stream().max(Comparator.comparing(Agriturismo::getPostiTenda).thenComparing(Agriturismo::getPostiRoulotte));
+        System.out.println("L'agriturismo con piu' posti campeggio è quello che si trova nel comune: " + azienda.get().getComuneAzienda());
 
         Map<String,Integer> postiLettoComune = new HashMap<>();
         for(String comune : nomiComuni){
