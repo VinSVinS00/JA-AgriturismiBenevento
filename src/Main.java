@@ -26,6 +26,11 @@ public class Main {
         }
         writer.close();
 
+        Stream<Agriturismo> nomeAzienda =e1.stream().sorted(Comparator.comparing(Agriturismo::getDenominazioneAzienda));
+        nomeAzienda.forEach(System.out::println);
+
+        
+
         Map<String,Integer> postiLettoComune = new HashMap<>();
         for(String comune : nomiComuni){
             Stream<Agriturismo> sa = e1.stream().filter(a -> a.getComuneAzienda().equals(comune));
