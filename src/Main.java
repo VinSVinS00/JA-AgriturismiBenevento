@@ -1,7 +1,9 @@
 import java.io.*;
 import java.nio.file.attribute.AclEntryFlag;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,5 +27,23 @@ public class Main {
             writer.write(comune + "\n");
         }
         writer.close();
+
+        Stream<Agriturismo> s3 = e1.stream().sorted((a, b) -> a.getDenominazioneAzienda().compareTo(b.getDenominazioneAzienda()));
+        System.out.println("LISTA DEGLI AGRITURISMI ORDINATI PER DENOMINAZIONE AZIENDA: \n");
+        s3.forEach(System.out::println);
+
+        Stream<Agriturismo> s4 = e1.stream();
+        Optional<Agriturismo> ag = s4.max(Comparator.comparingInt(a -> a.getPostiRoulotte() + a.getPostiTenda()));
+
+        System.out.println("L'agriturismo che ha più posti camping è: " + ag.get().getDenominazioneAzienda() +
+                ", che si trova a: " + ag.get().getComuneAzienda() + " \nNumero Posti Camping: " +
+                Integer.parseInt(String.valueOf(ag.get().getPostiTenda()+ag.get().getPostiRoulotte())));
+
+
+
+
+
+
+
     }
 }
