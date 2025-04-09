@@ -1,9 +1,6 @@
 import java.io.*;
 import java.nio.file.attribute.AclEntryFlag;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,11 +31,19 @@ public class Main {
         }
         System.out.println("\n" + postiLettoComune);
 
-        Map<String,Integer> postiCampingMedi = new HashMap<>();
-        for(String comune : nomiComuni){
-            Stream<Agriturismo> sa = e1.stream().filter(a -> a.getComuneAzienda().equals(comune));
-            double media =
+        Map<String,Double> postiCampingMedi = new HashMap<>();
+        List<Agriturismo> agriturismiCamping = e1.stream().filter(a -> a.getPostiTenda() > 0 && a.getPostiRoulotte() > 0).collect(Collectors.toList());
+        if(!agriturismiCamping.isEmpty()) {
+            for (String comune : nomiComuni) {
+                List<Agriturismo> inQuelComune = agriturismiCamping.stream().filter(a -> a.getComuneAzienda().equals(comune)).collect(Collectors.toList());
+                Double media = inQuelComune.stream().mapToInt(a -> a.getPostiRoulotte() + a.getPostiTenda()).average().orElse(0.0);
+                postiCampingMedi.put(comune, media);
+            }
+            System.out.println(postiCampingMedi);
+        }else{
+            System.out.println("Nessun agriturismo adibito al camping");
         }
+
 
     }
 }
